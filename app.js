@@ -145,9 +145,22 @@ const playARound = () => {
         }
         $body.append(`<h3>COMPUTER SCORE IS ${computerScore} AND PLAYER SCORE IS ${playerScore}.</h3>`);
         // console.log(player.hand);
+        // prompt
         $body.append("");
         $body.append("<p>RESHUFFLING...</p>");
         $body.append("");
+        
+        // Check for winner. If no winner, keep playing
+        if(computerScore === 3){
+          $body.append(`<h2>COMPUTER WINS</h2>`);
+        }
+        if(playerScore === 3){
+          $body.append(`<h2>PLAYER WINS</h2>`);
+        }
+        else if(computerScore <3 && playerScore <3){
+          playARound()
+          
+        }
     }
 
     const playerChoosesCard = () => {
@@ -163,17 +176,5 @@ const playARound = () => {
     playerChoosesCard();
 }
 
-// playARound();
 
-while(playerScore !== 3 || computerScore !==3){
-  playARound();
-//   break;
-  if(computerScore === 3){
-    $body.append(`<h2>COMPUTER WINS</h2>`);
-    break;
-  }
-  if(playerScore === 3){
-    $body.append(`<h2>PLAYER WINS</h2>`);
-    break;
-  }
-}
+playARound();
