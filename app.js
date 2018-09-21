@@ -4,91 +4,96 @@ $body.append("<h1>POKÉMANS GAME</h1>");
 let playerScore = 0;
 let computerScore = 0;
 
+let deck = [
+  {
+    name: "Bulbasaur",
+    damage: 60
+  }, {
+    name: "Caterpie",
+    damage: 40
+  }, {
+    name: "Charmander",
+    damage: 60
+  }, {
+    name: "Clefairy",
+    damage: 50
+  }, {
+    name: "Jigglypuff",
+    damage: 60
+  }, {
+    name: "Mankey",
+    damage: 30
+  }, {
+    name: "Meowth",
+    damage: 60
+  }, {
+    name: "Nidoran - female",
+    damage: 60
+  }, {
+    name: "Nidoran - male",
+    damage: 50
+  }, {
+    name: "Oddish",
+    damage: 40
+  }, {
+    name: "Pidgey",
+    damage: 50
+  }, {
+    name: "Pikachu",
+    damage: 50
+  }, {
+    name: "Poliwag",
+    damage: 50
+  }, {
+    name: "Psyduck",
+    damage: 60
+  }, {
+    name: "Rattata",
+    damage: 30
+  }, {
+    name: "Squirtle",
+    damage: 60
+  }, {
+    name: "Vulpix",
+    damage: 50
+  }, {
+    name: "Weedle", 
+    damage: 40
+  }
+];
+
+const player = {
+  hand: []
+}
+
+const computer = {
+  hand: []
+}
+
 const playARound = () => {
-  let deck = [
-      {
-        name: "Bulbasaur",
-        damage: 60
-      }, {
-        name: "Caterpie",
-        damage: 40
-      }, {
-        name: "Charmander",
-        damage: 60
-      }, {
-        name: "Clefairy",
-        damage: 50
-      }, {
-        name: "Jigglypuff",
-        damage: 60
-      }, {
-        name: "Mankey",
-        damage: 30
-      }, {
-        name: "Meowth",
-        damage: 60
-      }, {
-        name: "Nidoran - female",
-        damage: 60
-      }, {
-        name: "Nidoran - male",
-        damage: 50
-      }, {
-        name: "Oddish",
-        damage: 40
-      }, {
-        name: "Pidgey",
-        damage: 50
-      }, {
-        name: "Pikachu",
-        damage: 50
-      }, {
-        name: "Poliwag",
-        damage: 50
-      }, {
-        name: "Psyduck",
-        damage: 60
-      }, {
-        name: "Rattata",
-        damage: 30
-      }, {
-        name: "Squirtle",
-        damage: 60
-      }, {
-        name: "Vulpix",
-        damage: 50
-      }, {
-        name: "Weedle", 
-        damage: 40
-      }
-    ];
-
-  const player = {
-      hand: []
-  }
-
-  const computer = {
-      hand: []
-  }
+  $body.append("<p>SHUFFLING CARDS...</p>");
+  $body.append("");
+        
 
   // the function to deal out from the deck
   const dealOut = () => {
-    player.hand = [];
-    computer.hand = [];
     const deckDeal = deck;
 
-    for(let i =0; i<3; i++){
+    // if player.hand.length < 3, then deal out a random card from the deck 
+
+    while(player.hand.length < 3){
         const randomCard = Math.floor(Math.random()*deckDeal.length);
         player.hand.push(deckDeal[randomCard]);
         deckDeal.splice([randomCard],1);
     };
 
-    for(let i =0; i<3; i++){
+    while(computer.hand.length < 3){
         const randomCard = Math.floor(Math.random()*deckDeal.length);
         computer.hand.push(deckDeal[randomCard]);
         deckDeal.splice([randomCard],1);
     }
   }
+
   dealOut();
 //   a round
 //   while(deck.length>1){
@@ -116,7 +121,6 @@ const playARound = () => {
             }
         }
 
-        console.log(playerCard);
         // return that card
 
 
@@ -147,8 +151,6 @@ const playARound = () => {
         // console.log(player.hand);
         // prompt
         $body.append("");
-        $body.append("<p>RESHUFFLING...</p>");
-        $body.append("");
         
         // Check for winner. If no winner, keep playing
         if(computerScore === 3){
@@ -159,7 +161,6 @@ const playARound = () => {
         }
         else if(computerScore <3 && playerScore <3){
           playARound()
-          
         }
     }
 
