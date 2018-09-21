@@ -113,11 +113,15 @@ const playARound = () => {
         let playerCard;
         console.log(cardName);
         
+        let playerCardIndex = 0;
+
         // matches player's card to the button they chose
         for(let i=0; i<player.hand.length; i++){
             if(player.hand[i].name === cardName){
+                playerCardIndex = i;
                 console.log(player.hand[i]);
                 playerCard = player.hand[i];
+                break;
             }
         }
 
@@ -126,12 +130,10 @@ const playARound = () => {
 
         // const playerCard = player.hand[0];
         
-        // const playerCardIndex = Math.floor(Math.random()*player.hand.length);
         // player.hand.splice(playerCardIndex,1);
 
         const computerCardIndex = Math.floor(Math.random()*computer.hand.length);
         const computerCard = computer.hand[computerCardIndex];
-        // computer.hand.splice(computerCardIndex,1);
 
         $body.append(`<p>PLAYER IS PLAYING ${playerCard.name} AGAINST COMPUTER'S ${computerCard.name}.</p>`);
         
@@ -151,6 +153,14 @@ const playARound = () => {
         // console.log(player.hand);
         // prompt
         $body.append("");
+
+        player.hand.splice(playerCardIndex,1)
+        console.log(playerCardIndex);
+        console.log(computerCardIndex);
+        computer.hand.splice(computerCardIndex,1);
+        console.log(computer.hand.length);
+        // console.log(player.hand.length);
+        // console.log(deck.length);
         
         // Check for winner. If no winner, keep playing
         if(computerScore === 3){
