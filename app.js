@@ -167,7 +167,7 @@ const playARound = () => {
 
 while(playerScore !== 3 || computerScore !==3){
   playARound();
-  break;
+//   break;
   if(computerScore === 3){
     $body.append(`<h2>COMPUTER WINS</h2>`);
     break;
@@ -175,5 +175,5 @@ while(playerScore !== 3 || computerScore !==3){
   if(playerScore === 3){
     $body.append(`<h2>PLAYER WINS</h2>`);
     break;
-  };
+  }
 }
